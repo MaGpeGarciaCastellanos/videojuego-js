@@ -13,7 +13,7 @@ function setCanvasSize(){
       if(window.innerHeight > window.innerWidth){
           canvasSize = window.innerWidth*0.8;
       }else{
-          canvasSize = window.innerHeight * 0.8;
+           canvasSize = window.innerHeight * 0.8;
       }
   
       canvas.setAttribute('width', canvasSize);
@@ -29,10 +29,14 @@ function startGame(){
     //Colocar la funte y hacerla responsiva
     game.font = elementsSize + 'px Verdana';
     game.textAlign = 'end';
+    //Conseguir nuestro mapa (sin espacios en columnas)
+    const map= maps[0];
+    const mapRows= map[0].trim().split('\n');
+    const mapRowCols = mapRows.map(row => row.trim().split(''));
 
     for(let row=1; row<=10; row++){
         for(let col=1; col<=10; col++){
-            game.fillText(emojis['X'], elementsSize * col, elementsSize * row)
+            game.fillText(emojis[mapRowCols[row-1][col-1]], elementsSize * col, elementsSize * row);
         }
     }
     
